@@ -1,4 +1,4 @@
-#include <prdog/prdog-common.h>
+#include <prdog.h>
 
 int main(int argc, char* argv[]) {
     using namespace std;

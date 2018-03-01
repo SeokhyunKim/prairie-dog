@@ -17,10 +17,12 @@ else()
     message(STATUS "## The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-include_directories(include)
+include_directories(src)
 
-#add_library(prdog SHARED
-#    src/bla.cpp
-#)
+add_library(prdog SHARED
+    src/prdog/AgentAddress.cpp
+    src/prdog/Sim.cpp
+    src/prdog/SimAdapter.cpp
+)
 
 add_subdirectory(examples)
