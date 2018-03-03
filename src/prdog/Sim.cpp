@@ -1,4 +1,4 @@
-#include "Sim.h"
+#include "Sim.hpp"
 
 using namespace prdog;
 

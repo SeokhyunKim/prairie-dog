@@ -1,4 +1,4 @@
-#include "SimAdapter.h"
+#include "SimContext.hpp"
 
 using namespace prdog;
 

@@ -1,7 +1,7 @@
 #ifndef _PRDOG_SIM_H_
 #define _PRDOG_SIM_H_
 
-#include "prdog_common.h"
+#include "prdog_common.hpp"
 
 namespace prdog {
 

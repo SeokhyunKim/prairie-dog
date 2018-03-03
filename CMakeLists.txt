@@ -14,15 +14,17 @@ elseif(COMPILER_SUPPORTS_CXX11)
 #elseif(COMPILER_SUPPORTS_CXX0X)
 #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
-    message(STATUS "## The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+    message("## The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-include_directories(src)
+include_directories("$ENV{CEREAL_HOME}/include")
+message("## Cereal include directory: $ENV{CEREAL_HOME}/include")
+include_directories(include)
 
 add_library(prdog SHARED
     src/prdog/AgentAddress.cpp
     src/prdog/Sim.cpp
-    src/prdog/SimAdapter.cpp
+    src/prdog/SimContext.cpp
 )
 
 add_subdirectory(examples)

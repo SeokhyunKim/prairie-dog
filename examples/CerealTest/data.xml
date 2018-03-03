@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<cereal>
+  <var1>4</var1>
+  <value0>32</value0>
+  <value1>64</value1>
+  <myData>
+    <value0>true</value0>
+    <another>3.24</another>
+  </myData>
+  <value2>128</value2>
+</cereal>

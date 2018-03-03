@@ -1,7 +1,7 @@
 #ifndef _PRDOG_SIMADAPTER_H_
 #define _PRDOG_SIMADAPTER_H_
 
-#include "prdog_common.h"
+#include "prdog_common.hpp"
 
 namespace prdog {
 
@@ -9,6 +9,7 @@ namespace prdog {
         public:
             SimAdapter();
             ~SimAdapter();
+
             real getCurTime() const { return curTime; }
 
         private:

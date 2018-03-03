@@ -7,7 +7,10 @@
 #include <unordered_map>
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include <stdint.h>
+
+#include <cereal/archives/binary.hpp>
 
 namespace prdog {
 
