@@ -19,6 +19,9 @@ endif()
 
 include_directories("$ENV{CEREAL_HOME}/include")
 message("## Cereal include directory: $ENV{CEREAL_HOME}/include")
+include_directories("$ENV{BOOST_ROOT}")
+message("## Boost root directory: $ENV{BOOST_ROOT}")
+
 include_directories(include)
 
 add_library(prdog SHARED
@@ -26,5 +29,4 @@ add_library(prdog SHARED
     src/prdog/Sim.cpp
     src/prdog/SimContext.cpp
 )
-
 add_subdirectory(examples)

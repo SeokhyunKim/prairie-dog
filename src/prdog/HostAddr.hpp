@@ -1,13 +1,13 @@
-#ifndef _PRDOG_HOSTADDRESS_HPP_
-#define _PRDOG_HOSTADDRESS_HPP_
+#ifndef _PRDOG_HOSTADDR_HPP_
+#define _PRDOG_HOSTADDR_HPP_
 
 #include "prdog_common.hpp"
 
 namespace prdog {
 
-    class HostAddress {
+    class HostAddr {
         public:
-            HostAddress();
+            HostAddr();
 
             string getName() const { return _name; }
             void setName(const string& name) { _name = name; }

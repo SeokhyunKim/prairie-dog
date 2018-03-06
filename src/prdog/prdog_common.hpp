@@ -5,9 +5,12 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <random>
+#include <exception>
 #include <stdint.h>
 
 #include <cereal/archives/binary.hpp>
@@ -22,6 +25,8 @@ namespace prdog {
     typedef uint32_t address_t;
 
     const int null = 0;
+    
+    typedef shared_ptr< vector<byte> > ByteVect;
 
 };
 

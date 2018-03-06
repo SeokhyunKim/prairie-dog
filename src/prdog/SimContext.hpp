@@ -1,19 +1,23 @@
-#ifndef _PRDOG_SIMADAPTER_H_
-#define _PRDOG_SIMADAPTER_H_
+#ifndef _PRDOG_SIMCONTEXT_HPP_
+#define _PRDOG_SIMCONTEXT_HPP_
 
 #include "prdog_common.hpp"
 
 namespace prdog {
 
-    class SimAdapter {
+    class SimContext {
         public:
-            SimAdapter();
-            ~SimAdapter();
+            SimContext();
+            ~SimContext();
 
-            real getCurTime() const { return curTime; }
+            real getCurTime() const { return _curTime; }
+            weak_ptr<Msg> getMsg() const { return _msg; }
 
         private:
-            real curTime;
+            friend class Sim;
+
+            real _curTime;
+            weak_ptr<Msg> _msg;
     };
 
 }; // end of prdog

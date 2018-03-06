@@ -1,18 +1,18 @@
-#ifndef _PRDOG_AGENTADDRESS_H_
-#define _PRDOG_AGENTADDRESS_H_
+#ifndef _PRDOG_AGENTADDR_HPP_
+#define _PRDOG_AGENTADDR_HPP_
 
 #include "prdog_common.hpp"
 
 namespace prdog {
 
-    class AgentAddress {
+    class AgentAddr {
         public:
-            AgentAddress(int id);
+            AgentAddr(int id);
 
             int getId() const { return _id; }
 
         private:
-            HostAddress _hostAddr;
+            HostAddr _hostAddr;
             int _id;
             string _alias;
     };

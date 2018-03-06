@@ -7,7 +7,7 @@ namespace prdog {
 
     class AgentPoolCreator {
         public:
-            virtual shared_ptr<AgentPool> create() = 0;
+            virtual shared_ptr<AgentPool> create(map<string, real> params) = 0;
     };
 
 }; // end of prdog
