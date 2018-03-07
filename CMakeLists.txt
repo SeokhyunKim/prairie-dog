@@ -22,11 +22,8 @@ message("## Cereal include directory: $ENV{CEREAL_HOME}/include")
 include_directories("$ENV{BOOST_ROOT}")
 message("## Boost root directory: $ENV{BOOST_ROOT}")
 
-include_directories(include)
+include_directories("include" "include/prdog")
 
-add_library(prdog SHARED
-    src/prdog/AgentAddress.cpp
-    src/prdog/Sim.cpp
-    src/prdog/SimContext.cpp
-)
+add_subdirectory(src/prdog)
+
 add_subdirectory(examples)

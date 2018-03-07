@@ -1,7 +1,7 @@
 #ifndef _PRDOGMSG_HPP_
 #define _PRDOGMSG_HPP_
 
-#include "prdog_common.hpp"
+#include <prdog_common.hpp>
 
 namespace prdog {
 

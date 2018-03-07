@@ -1,7 +1,7 @@
 #ifndef _PRDOG_AGENT_H_
 #define _PRDOG_AGENT_H_
 
-#include "prdog_common.hpp"
+#include <prdog_common.hpp>
 
 namespace prdog {
 

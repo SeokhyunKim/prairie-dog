@@ -11,13 +11,13 @@ namespace prdog {
             ~SimContext();
 
             real getCurTime() const { return _curTime; }
-            weak_ptr<Msg> getMsg() const { return _msg; }
+            Communicator& getCommunicator() const { return *_comm; }
 
         private:
             friend class Sim;
 
             real _curTime;
-            weak_ptr<Msg> _msg;
+            shared_ptr<Communicator> _comm;
     };
 
 }; // end of prdog

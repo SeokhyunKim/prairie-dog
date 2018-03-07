@@ -1,10 +1,14 @@
 #ifndef _PRDOG_SIM_HPP_
 #define _PRDOG_SIM_HPP_
 
-#include "prdog_common.hpp"
+#include "Runner/DiscretTimeRunner.hpp"
+#include "Agent/AgentPoolCreator.hpp"
+#include "Agent/AgentPool.hpp"
+#include "Communicator/Communicator.hpp"
 
 namespace prdog {
 
+    template<class RUNNER = DiscretTimeRunner>
     class Sim {
         public:
             Sim(unique_ptr<AgentPoolCreator> creator);
@@ -21,8 +25,8 @@ namespace prdog {
             real _curTime;
             shared_ptr<AgentPool> _agentPool;
             unique_ptr<AgentPoolCreator> _agentPoolCreator;
-            unique_prr<Msg> _msg;
-            unique_ptr<SimContext> _simContext;
+            unique_ptr<Communicator> _comm;
+            shared_ptr<SimContext> _simContext;
 
     };
 

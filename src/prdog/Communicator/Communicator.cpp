@@ -13,7 +13,9 @@ Communicator::~Communicator() {
 void Communicator::send(AgentAddr addr, ByteVect msg) {
     // TODO: consider when addr._hostAddr is remote later
 
-    Msg newMsg;
-    newMsg.sentTime = 
-    _msgHeap.push_back
+    //Msg newMsg;
+    //newMsg.sentTime = 
+    //_msgHeap.push_back
+    //
+}
 
