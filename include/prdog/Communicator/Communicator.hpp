@@ -1,37 +1,35 @@
-#ifndef _PRDOGMSG_HPP_
-#define _PRDOGMSG_HPP_
-
-#include <prdog_common.hpp>
+#ifndef _PRDOG_COMMUNICATOR_HPP_
+#define _PRDOG_COMMUNICATOR_HPP_
 
 namespace prdog {
 
     class Sim;
 
-
     class Communicator {
         public:
-            Communicator(Sim&, real delayMean, real delayStdDev);
+            Communicator(Sim&);
             ~Communicator();
 
-            void send(AgentAddr addr, ByteVect msg);
+            void initialize(map<string, real> params);
+
+            void send(AgentAddr addr, ByteVectPtr msg);
 
         private:
             struct Msg {
                 real sentTime;
                 real delay;
                 real arvTime;
-                ByteVect msg;
+                ByteVectPtr msg;
 
                 bool operator < (Msg& rhs) {
                     // make min-heap (make_heap makes max heap)
                     return this->arvTime > rhs.arvTime;
                 }
             };
-            vect<Msg> _msgHeap;
+            vector<Msg> mMsgHeap;
 
-            Sim& _sim;
-            std::mt19937 _mt;
-            real _delayMean, _delayStddev;
+            Sim& mSim;
+            real mDelayMean, mDelayStddev;
             
     };
 

@@ -1,18 +1,14 @@
 #ifndef _PRDOG_RUNNER_HPP_
 #define _PRDOG_RUNNER_HPP_
 
-#include <prdog_common.hpp>
-
 namespace prdog {
 
     class Runner {
-        private:
-            Runner();
-            virtual ~Runner();
-
-        private:
+        public:
 
     };
+
+    typedef shared_ptr<Runner> RunnerPtr;
 
 }; // end of prdog
 

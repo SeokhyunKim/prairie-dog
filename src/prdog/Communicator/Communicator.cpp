@@ -1,21 +1,29 @@
-#include "Communicator.hpp"
+#include "../prdog_common.hpp"
 
 using namespace prdog;
 
-Communicator::Communicator(Sim& sim, real delayMean, real delayStddev)
-    : _sim(sim), _mt((std::random_device())()),
-    _delayMean(delayMean), _delayStddev(delayStddev) {
+namespace std {
+    static std::mt19937 sMt((std::random_device())());
+};
+
+Communicator::Communicator(Sim& sim)
+    : mSim(sim) {
 }
 
 Communicator::~Communicator() {
 }
 
-void Communicator::send(AgentAddr addr, ByteVect msg) {
-    // TODO: consider when addr._hostAddr is remote later
+void Communicator::initialize(map<string, real> params) {
+    mDelayMean = params["delayMean"];
+    mDelayStddev = params["delayStddev"];
+}
 
-    //Msg newMsg;
-    //newMsg.sentTime = 
-    //_msgHeap.push_back
-    //
+void Communicator::send(AgentAddr addr, ByteVectPtr msg) {
+    // TODO: consider when addr._hostAddr is remote later
+    
+    // TODO: based on _delayMean and _delayStddev, calculate arvTime.
+    // put into _msgHeap
+    // implement method to pop messages before a give time point
+
 }
 

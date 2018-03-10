@@ -1,8 +1,11 @@
 #ifndef _PRDOG_COMMON_H_
 #define _PRDOG_COMMON_H_
 
+#include <prdog/prdog.hpp>
+
 #include <list>
 #include <vector>
+#include <string>
 #include <map>
 #include <unordered_map>
 #include <algorithm>
@@ -14,19 +17,15 @@
 #include <stdint.h>
 
 #include <cereal/archives/binary.hpp>
+#include <c-log/log.h>
+#include <c-log/macro_define.h>
 
 namespace prdog {
 
     using namespace std;
 
-    typedef float real;
-    typedef unsigned char byte;
     typedef unsigned int uint;
     typedef uint32_t address_t;
-
-    const int null = 0;
-    
-    typedef shared_ptr< vector<byte> > ByteVect;
 
 };
 

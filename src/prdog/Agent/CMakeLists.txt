@@ -1,4 +1,3 @@
-add_library(prdog STATIC
-    AgentAddress.cpp
+add_library(agent STATIC
     HostAddr.cpp
 )

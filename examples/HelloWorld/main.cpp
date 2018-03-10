@@ -1,4 +1,5 @@
-#include <prdog.hpp>
+#include <prdog/prdog.hpp>
+#include <iostream>
 
 int main(int argc, char* argv[]) {
     using namespace std;

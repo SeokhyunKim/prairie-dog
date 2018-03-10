@@ -1,9 +1,17 @@
-#include "SimContext.hpp"
+#include <prdog/prdog.hpp>
 
 using namespace prdog;
 
-SimAdapter::SimAdapter() {
+SimContext::SimContext(Sim& sim) : mSim(sim) {
 }
 
-SimAdapter::~SimAdapter() {
+SimContext::~SimContext() {
+}
+
+real SimContext::getCurTime() {
+    return mSim.getCurTime();
+}
+
+Communicator& SimContext::getCommunicator() {
+    return mSim.getCommunicator();
 }

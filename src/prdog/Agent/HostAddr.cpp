@@ -1,4 +1,4 @@
-#include "HostAddr.hpp"
+#include "../prdog_common.hpp"
 
 using namespace prdog;
 
