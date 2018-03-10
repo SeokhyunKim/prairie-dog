@@ -1,4 +1,4 @@
-#include <prdog/prdog.hpp>
+#include "prdog_common.hpp"
 
 using namespace prdog;
 
@@ -14,6 +14,11 @@ void Sim::initialize(map<string, real> params) {
     for ( auto& agentPtr : mAgentPtrs ) {
         agentPtr->initialize(params);
     }
+}
+
+void Sim::initialize(map<string, real> params, RunnerPtr runner) {
+    mRunnerPtr = runner;
+    initialize(params);
 }
 
 void Sim::clear() {
