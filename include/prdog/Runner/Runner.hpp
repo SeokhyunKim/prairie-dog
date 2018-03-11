@@ -5,10 +5,9 @@ namespace prdog {
 
     class Runner {
         public:
+            typedef shared_ptr<Runner> sptr;
 
     };
-
-    typedef shared_ptr<Runner> RunnerPtr;
 
 }; // end of prdog
 

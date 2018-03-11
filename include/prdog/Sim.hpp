@@ -9,7 +9,7 @@ namespace prdog {
             ~Sim();
 
             void initialize(map<string, real> params);
-            void initialize(map<string, real> params, RunnerPtr runner);
+            void initialize(map<string, real> params, Runner::sptr runner);
             void clear();
 
             void run(real dt);
@@ -23,9 +23,9 @@ namespace prdog {
 
         private:
             real mCurTime;
-            vector<AgentPtr> mAgentPtrs;
+            vector<Agent::sptr> mAgents;
             unique_ptr<AgentVectorCreator> mAgentVectorCreator;
-            RunnerPtr mRunnerPtr;
+            Runner::sptr mRunner;
             unique_ptr<Communicator> mComm;
             unique_ptr<SimContext> mSimContext;
     };

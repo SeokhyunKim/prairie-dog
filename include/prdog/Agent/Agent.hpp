@@ -7,12 +7,12 @@ namespace prdog {
 
     class Agent {
         public:
+            typedef shared_ptr<Agent> sptr;
+
             virtual void initialize(const map<string, real>& params) = 0;
             virtual real getValue(const string& key) = 0;
             virtual void update(real dt, SimContext& context) = 0;
     };
-
-    typedef shared_ptr<Agent> AgentPtr;
 
 }; // end of prdog
 

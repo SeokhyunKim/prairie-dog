@@ -10,19 +10,19 @@ Sim::~Sim() {
 }
 
 void Sim::initialize(map<string, real> params) {
-    mAgentPtrs = mAgentVectorCreator->create(params);
-    for ( auto& agentPtr : mAgentPtrs ) {
-        agentPtr->initialize(params);
+    mAgents = mAgentVectorCreator->create(params);
+    for ( auto& agent : mAgents ) {
+        agent->initialize(params);
     }
 }
 
-void Sim::initialize(map<string, real> params, RunnerPtr runner) {
-    mRunnerPtr = runner;
+void Sim::initialize(map<string, real> params, Runner::sptr runner) {
+    mRunner = runner;
     initialize(params);
 }
 
 void Sim::clear() {
-    mAgentPtrs.clear();
+    mAgents.clear();
 }
 
 void Sim::run(real dt) {
@@ -31,12 +31,12 @@ void Sim::run(real dt) {
 int Sim::getSums(list<string>& keys, map<string, real>& sums) {
     for (string& key : keys) {
         real sum = 0.0;
-        for ( auto& agentPtr : mAgentPtrs ) {
-            sum += agentPtr->getValue(key);
+        for ( auto& agent : mAgents ) {
+            sum += agent->getValue(key);
         }
         sums[key] = sum;
     }
-    return mAgentPtrs.size();
+    return mAgents.size();
 }
 
 int Sim::getVars(list<string>& keys, map<string, real>& vars) {
@@ -45,11 +45,11 @@ int Sim::getVars(list<string>& keys, map<string, real>& vars) {
     for (string& key : keys) {
         real var = 0.0;
         real avg = sums[key] / (real)num;
-        for ( auto& agentPtr : mAgentPtrs ) {
-            real val = agentPtr->getValue(key);
+        for ( auto& agent : mAgents ) {
+            real val = agent->getValue(key);
             var += (avg-val)*(avg-val);
         }
     }
-    return mAgentPtrs.size();
+    return mAgents.size();
 }
 

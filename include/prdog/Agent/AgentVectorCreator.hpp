@@ -5,7 +5,7 @@ namespace prdog {
 
     class AgentVectorCreator {
         public:
-            virtual vector<AgentPtr> create(map<string, real> params) = 0;
+            virtual vector<Agent::sptr> create(map<string, real> params) = 0;
     };
 
 }; // end of prdog
