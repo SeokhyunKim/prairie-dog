@@ -1,6 +1,8 @@
 #ifndef _PRDOG_AGENT_HPP_
 #define _PRDOG_AGENT_HPP_
 
+#include "AgentAddr.hpp"
+
 namespace prdog {
 
     class SimContext;

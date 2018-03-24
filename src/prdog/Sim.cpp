@@ -2,23 +2,23 @@
 
 using namespace prdog;
 
-Sim::Sim(unique_ptr<AgentVectorCreator> creator) {
+Sim::Sim(AgentVectorCreator::uptr creator,
+         Runner::uptr runner) {
     mAgentVectorCreator.reset(creator.release());
+    mRunner.reset(runner.release());
 }
 
 Sim::~Sim() {
 }
 
-void Sim::initialize(map<string, real> params) {
+void Sim::initialize(map<string, real> params, Runner::uptr runner) {
+    mRunner.reset(runner.release());
     mAgents = mAgentVectorCreator->create(params);
     for ( auto& agent : mAgents ) {
         agent->initialize(params);
     }
-}
-
-void Sim::initialize(map<string, real> params, Runner::sptr runner) {
-    mRunner = runner;
-    initialize(params);
+    mComm = Communicator::uptr(new Communicator(mAgents));
+    
 }
 
 void Sim::clear() {
@@ -26,6 +26,7 @@ void Sim::clear() {
 }
 
 void Sim::run(real dt) {
+    mRunner->run(dt);
 }
 
 int Sim::getSums(list<string>& keys, map<string, real>& sums) {

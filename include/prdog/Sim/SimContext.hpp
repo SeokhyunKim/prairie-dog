@@ -3,8 +3,12 @@
 
 namespace prdog {
 
+    class Sim;
+
     class SimContext {
         public:
+            typedef unique_ptr<SimContext> uptr;
+
             SimContext(Sim&);
             ~SimContext();
 

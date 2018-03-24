@@ -1,6 +1,8 @@
 #ifndef _PRDOG_HOSTADDR_HPP_
 #define _PRDOG_HOSTADDR_HPP_
 
+#include "../etc/prdog_commons.hpp"
+
 namespace prdog {
 
     class HostAddr {

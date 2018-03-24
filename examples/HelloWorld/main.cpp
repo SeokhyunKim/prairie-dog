@@ -28,12 +28,46 @@ class TestAgentVectorCreator : public AgentVectorCreator {
 
 };
 
+class ITest {
+    public:
+        void func() {}
+
+    protected:
+        typedef void (ITest::func_ptr)();
+
+        func_ptr f1;
+};
+
+template<typename S>
+class TT : public ITest {
+    public:
+        TT(S* _s) : mS(_s) {}
+        void func() {
+            mS->func();
+        }
+
+    private:
+        S* mS;
+};
+
+class SS {
+    public:
+        void func() {
+            cout << " SS " << endl;
+        }
+};
+
+
 
 
 int main(int argc, char* argv[]) {
     using namespace std;
 
     prdog::Sim sim(unique_ptr<AgentVectorCreator>(new TestAgentVectorCreator));
+
+    SS s;
+    ITest* t = new TT<SS>(&s);
+    t->func();
 
 
 
