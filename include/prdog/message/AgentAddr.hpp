@@ -8,6 +8,7 @@ namespace prdog {
     class AgentAddr {
         public:
             AgentAddr(int id) { mId = id; }
+            AgentAddr(const AgentAddr& rhs);
 
             int getId() const { return mId; }
             string getAlias() const { return mAlias; }

@@ -1,21 +1,27 @@
 #ifndef _PRDOG_AGENT_HPP_
 #define _PRDOG_AGENT_HPP_
 
-#include "AgentAddr.hpp"
+#include "../etc/ParamMap.hpp"
+#include "../event/Event.hpp"
+#include "../message/Message.hpp"
 
 namespace prdog {
 
-    class SimContext;
+    class SimMediator;
 
     class Agent {
         public:
             typedef shared_ptr<Agent> sptr;
 
-            virtual void initialize(const map<string, real>& params) = 0;
-            virtual real getValue(const string& key) = 0;
-            virtual void update(real dt, SimContext& context) = 0;
+            virtual void initialize(const ParamMap& params) = 0;
+
+            virtual void update(SimMediator&) = 0;
+
+            virtual Event::sptr getNextEvent() = 0;
+
+            virtual void onMessage(Message::sptr) = 0;
     };
 
-}; // end of prdog
+} // end of prdog
 
 #endif
