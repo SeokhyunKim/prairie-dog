@@ -6,6 +6,8 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <exception>
+#include <stdexcept>
 
 namespace prdog {
 

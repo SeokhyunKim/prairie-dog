@@ -3,73 +3,40 @@
 
 using namespace prdog;
 
-class TestAgent : public Agent {
+class TestAgent {
     public:
-        void initialize(const map<string, real>& params) {
+        TestAgent(){}
+        void initialize(const prdog::ParamMap& parmas) {
+            cout << "init..." << endl;
         }
 
-        real getValue(const string& key) {
-            return 0;
+        void update(SimMediator& simMediator) {
+            //cout << "update..." << simMediator.getCurTime() << endl;
+        }
+            
+        Event::sptr getNextEvent() {
+            return Event::sptr(nullptr);
         }
 
-        void update(real dt, SimContext& context) {
+        void onMessage(Message::sptr) {
         }
 };
-
-class TestAgentVectorCreator : public AgentVectorCreator {
-    public:
-        vector<Agent::sptr> create(map<string, real> params) {
-            vector<Agent::sptr> vect;
-            for ( int i=0; i<3; ++i ) {
-                vect.push_back(Agent::sptr(new TestAgent));
-            }
-            return vect;
-        }
-
-};
-
-class ITest {
-    public:
-        void func() {}
-
-    protected:
-        typedef void (ITest::func_ptr)();
-
-        func_ptr f1;
-};
-
-template<typename S>
-class TT : public ITest {
-    public:
-        TT(S* _s) : mS(_s) {}
-        void func() {
-            mS->func();
-        }
-
-    private:
-        S* mS;
-};
-
-class SS {
-    public:
-        void func() {
-            cout << " SS " << endl;
-        }
-};
-
-
 
 
 int main(int argc, char* argv[]) {
     using namespace std;
 
-    prdog::Sim sim(unique_ptr<AgentVectorCreator>(new TestAgentVectorCreator));
-
-    SS s;
-    ITest* t = new TT<SS>(&s);
-    t->func();
-
-
+    try {
+        prdog::ParamMap params;
+        params[ParamKey::NUM_AGENTS] = "3";
+        params[ParamKey::UPDATE_PERIOD] = "0.5";
+        params[ParamKey::LOG_LEVEL] = "1";
+        prdog::Sim sim;
+        sim.initialize<TestAgent>(params);
+        sim.run(3);
+    } catch (std::exception& e) {
+        cout << e.what() << endl;
+    }
 
     cout << "Hello world, I'm PrairieDog." << endl;
     return 0;

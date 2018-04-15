@@ -1,7 +1,7 @@
-#ifndef _PRDOG_COMMON_H_
-#define _PRDOG_COMMON_H_
+#ifndef _PRDOG_INTERNAL_COMMONS_HPP_
+#define _PRDOG_INTERNAL_COMMONS_HPP_
 
-#include <prdog/prdog.hpp>
+#include <prdog/etc/prdog_commons.hpp>
 
 #include <list>
 #include <vector>
@@ -14,11 +14,19 @@
 #include <memory>
 #include <random>
 #include <exception>
+#include <stdexcept>
 #include <stdint.h>
 
 #include <cereal/archives/binary.hpp>
 #include <c-log/log.h>
 #include <c-log/macro_define.h>
+
+#include "prdog_utils.hpp"
+#include <prdog/agent/Agent.hpp>
+#include <prdog/event/Event.hpp>
+#include <prdog/event/UpdateSimEvent.hpp>
+#include <prdog/message/StringMessage.hpp>
+#include <prdog/etc/ParamMap.hpp>
 
 namespace prdog {
 

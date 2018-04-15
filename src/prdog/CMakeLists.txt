@@ -1,10 +1,12 @@
 add_library(prdog SHARED
-    Sim.cpp
-    SimContext.cpp
+    sim/Sim.cpp
+    sim/SimMediator.cpp
+    sim/PeriodicUpdater.cpp
 )
 
-add_subdirectory(Agent)
-add_subdirectory(Communicator)
-add_subdirectory(Runner)
+add_subdirectory(message)
+add_subdirectory(etc)
+add_subdirectory(event)
 
-target_link_libraries(prdog agent communicator runner)
+target_link_libraries(prdog message etc event clog)
+#target_link_libraries(prdog agent communicator runner)

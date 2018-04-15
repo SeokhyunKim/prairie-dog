@@ -1,38 +1,41 @@
 #ifndef _PRDOG_SIM_HPP_
 #define _PRDOG_SIM_HPP_
 
-#include "../Agent/AgentVectorCreator.hpp"
-#include "../Runner/DiscretTimeRunner.hpp"
-#include "../Communicator/Communicator.hpp"
-#include "SimContext.hpp"
+#include "../agent/AgentImpl.hpp"
+#include "../message/StringMessage.hpp"
+#include "../event/Event.hpp"
+#include "SimMediator.hpp"
 
 namespace prdog {
 
     class Sim {
         public:
-            Sim(AgentVectorCreator::uptr creator,
-                Runner::uptr runner = Runner::uptr(new DiscretTimeRunner));
+            Sim();
             ~Sim();
 
-            void initialize(map<string, real> params, Runner::uptr runner);
-            void clear();
+            template<typename T>
+            void initialize(const ParamMap& params) {
+                _initialize(params, AgentImpl<T>::createAgent);
+            }
 
-            void run(real dt);
-            
-            int getSums(list<string>& keys, map<string, real>& sums);
-            int getVars(list<string>& keys, map<string, real>& vars);
+            real getCurTime() const { return mCurTime; }
+            void sendMessage(Message::sptr);
+            void run(real deltaT);
 
-            real getCurTime() { return mCurTime; }
-
-            Communicator& getCommunicator() { return *mComm; }
+        private:
+            typedef Agent::sptr (*CREATE_AGENT_FN)();
+            void _initialize(const ParamMap& params, CREATE_AGENT_FN);
+            void updateCurTime();
+            void processNextEvent();
 
         private:
             real mCurTime;
+            int mNumAgents;
+            bool mStopSim;
+            real mMsgDelay;
+            SimMediator mSimMediator;
             vector<Agent::sptr> mAgents;
-            AgentVectorCreator::uptr mAgentVectorCreator;
-            Runner::uptr mRunner;
-            Communicator::uptr mComm;
-            SimContext::uptr mSimContext;
+            vector<Event::sptr> mEvents;
     };
 
 }; // end of prdog
