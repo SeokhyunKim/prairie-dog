@@ -9,6 +9,7 @@ Message::Message(int code, real sendTime, const AgentAddr& from, const AgentAddr
 
 string Message::toString() const {
     char buf[64];
-    sprintf(buf, "Message(code:%d, sendTime:%.2f)", mMsgCode, mSendTime);
+    sprintf(buf, "Message(code:%d, sendTime:%.2f, arrivalTime: %.2f, from:%d, to:%d)",
+            mMsgCode, mSendTime, mTime, mFrom.getId(), mTo.getId());
     return string(buf);
 }

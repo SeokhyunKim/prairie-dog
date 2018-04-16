@@ -15,6 +15,7 @@ namespace prdog {
 
             virtual Type getMessageType() const = 0;
 
+            EventType getEventType() const { return MESSAGE; }
             real getSendTime() const { return mSendTime; }
             real getArrivalTime() const { return getTime(); }
             void setArrivalTime(real t) { mTime = t; }

@@ -7,8 +7,6 @@ namespace prdog {
 
     class HostAddr {
         public:
-            HostAddr() {}
-
             string getName() const { return _name; }
             void setName(const string& name) { _name = name; }
 

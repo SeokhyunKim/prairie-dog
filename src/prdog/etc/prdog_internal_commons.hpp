@@ -21,12 +21,12 @@
 #include <c-log/log.h>
 #include <c-log/macro_define.h>
 
-#include "prdog_utils.hpp"
 #include <prdog/agent/Agent.hpp>
 #include <prdog/event/Event.hpp>
 #include <prdog/event/UpdateSimEvent.hpp>
 #include <prdog/message/StringMessage.hpp>
 #include <prdog/etc/ParamMap.hpp>
+#include <prdog/etc/prdog_utils.hpp>
 
 namespace prdog {
 

@@ -26,7 +26,7 @@ namespace prdog {
             typedef Agent::sptr (*CREATE_AGENT_FN)();
             void _initialize(const ParamMap& params, CREATE_AGENT_FN);
             void updateCurTime();
-            void processNextEvent();
+            void processNextEvents();
 
         private:
             real mCurTime;

@@ -6,5 +6,4 @@ Thumbs.db
 build/
 
 # log directory
-.log/
 log/

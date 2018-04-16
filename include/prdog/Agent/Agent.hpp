@@ -4,6 +4,7 @@
 #include "../etc/ParamMap.hpp"
 #include "../event/Event.hpp"
 #include "../message/Message.hpp"
+#include "../message/StringMessage.hpp"
 
 namespace prdog {
 

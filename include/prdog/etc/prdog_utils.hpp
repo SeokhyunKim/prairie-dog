@@ -1,8 +1,8 @@
 #ifndef _PRDOG_UTILS_HPP_
 #define _PRDOG_UTILS_HPP_
 
-#include <prdog/etc/prdog_commons.hpp>
-#include <prdog/event/Event.hpp>
+#include "prdog_commons.hpp"
+#include "../event/Event.hpp"
 
 namespace prdog {
     using namespace std;
@@ -12,12 +12,6 @@ namespace prdog {
 
     // real to string
     string realToStr(real v);
-
-    // shared_ptr casting
-    template<typename S, typename T>
-    shared_ptr<S> sptr_cast(shared_ptr<T> sptr) {
-        return shared_ptr<S>(dynamic_cast<S*>(sptr.get()));
-    }
 
     // validation function. if not true, throw IllegalStateException
     void validate(bool condition, const string& msg);

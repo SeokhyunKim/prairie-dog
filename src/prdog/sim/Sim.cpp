@@ -71,10 +71,9 @@ void Sim::sendMessage(Message::sptr msg) {
     // later, will consider delay based on several statistic model.
     // currently, just add the delay value given by initial parameter.
     msg->setArrivalTime(msg->getSendTime() + mMsgDelay);
-    mEvents.push_back(sptr_cast<Event, Message>(msg));
-    push_heap(mEvents.begin(), mEvents.end(), EventCompare());
     LOG_DEBUG("Send message: %s", msg->toString().c_str());
-    LOG_DEBUG("mEvents.size(): %d", mEvents.size());
+    mEvents.push_back(static_pointer_cast<Event>(msg));
+    push_heap(mEvents.begin(), mEvents.end(), EventCompare());
 }
 
 void Sim::run(real deltaT) {
@@ -86,11 +85,8 @@ void Sim::run(real deltaT) {
     LOG_DEBUG("mEvents.size(): %d", mEvents.size());
     
     while (!mStopSim && mEvents.size() > 0 && mEvents.front()->getTime() <= targetTime) {
-        // Uncomment below to print out whole event vector for debugging
-        //logDebugEvents(mEvents);
-
         updateCurTime();
-        processNextEvent();
+        processNextEvents();
 
         // Update agents
         for (auto& a : mAgents) {
@@ -101,10 +97,6 @@ void Sim::run(real deltaT) {
                 push_heap(mEvents.begin(), mEvents.end(), EventCompare());
             }
         }
-
-        // Remove processed event
-        pop_heap(mEvents.begin(), mEvents.end(), EventCompare());
-        mEvents.pop_back();
     }
 }
 
@@ -121,23 +113,31 @@ void Sim::updateCurTime() {
 }
 
 // Do additional task according to event type
-void Sim::processNextEvent() {
-    Event::sptr evt = mEvents.front();
-    switch (evt->getEventType()) {
-        case EventType::MESSAGE: {
-            Message::sptr msg = sptr_cast<Message, Event>(evt);
-            const AgentAddr& rcv = msg->getReceiver();
-            validate(rcv.getId()>=0 && rcv.getId()<mNumAgents,
+void Sim::processNextEvents() {
+    while(mEvents.size() > 0) {
+        Event::sptr evt = mEvents.front();
+        if (evt->getTime() > mCurTime) {
+            break;
+        }
+        switch (evt->getEventType()) {
+            case EventType::MESSAGE: {
+                Message::sptr msg = dynamic_pointer_cast<Message>(evt);
+                const AgentAddr& rcv = msg->getReceiver();
+                validate(rcv.getId()>=0 && rcv.getId()<mNumAgents,
                     "A message has an invalid receiver: (" + msg->toString() + ")");
-            mAgents[rcv.getId()]->onMessage(msg);
+                mAgents[rcv.getId()]->onMessage(msg);
+            }
+            break;
+            case EventType::EXIT_SIM: {
+                mStopSim = true;
+            }
+            break;
+            // no additional task
+            case EventType::UPDATE_SIM:
+            break;
         }
-        break;
-        case EventType::EXIT_SIM: {
-            mStopSim = true;
-        }
-        break;
-        // no additional task
-        case EventType::UPDATE_SIM:
-        break;
+        // Remove processed event
+        pop_heap(mEvents.begin(), mEvents.end(), EventCompare());
+        mEvents.pop_back();
     }
 }

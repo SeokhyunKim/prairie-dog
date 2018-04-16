@@ -5,11 +5,13 @@
 
 namespace prdog {
 
-    class SimpleMessage : public Message {
+    class StringMessage : public Message {
         public:
-            SimpleMessage(int code, real sendTime, const AgentAddr& from, const AgentAddr& to, const string& msg);
+            typedef shared_ptr<StringMessage> sptr;
 
-            Type getMessageType() const { return STRING; }
+            StringMessage(int code, real sendTime, const AgentAddr& from, const AgentAddr& to, const string& msg);
+
+            Type getMessageType() const { return Message::Type::STRING; }
 
             string getMessage() const { return mMsg; }
 
