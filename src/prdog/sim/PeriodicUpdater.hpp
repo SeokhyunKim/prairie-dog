@@ -9,7 +9,7 @@ namespace prdog {
         public:
             PeriodicUpdater(real period);
 
-            void initialize(const ParamMap& params);
+            void initialize(const AgentAddr& addr, const ParamMap& params);
 
             void update(SimMediator&);
             

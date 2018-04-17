@@ -39,7 +39,9 @@ void Sim::_initialize(const ParamMap& params, CREATE_AGENT_FN caFn) {
     }
     LOG_NOTICE("Agent vector size: %d", mAgents.size());
     LOG_NOTICE("Calling initialize per each agent...");
-    for_each(mAgents.begin(), mAgents.end(), [&](Agent::sptr& a){a->initialize(params);});
+    for (int i=0; i<mNumAgents; ++i) {
+        mAgents[i]->initialize(AgentAddr(i), params);
+    }
 
     // the first sim update event
     mEvents.push_back(Event::sptr(new UpdateSimEvent));

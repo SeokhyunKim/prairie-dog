@@ -9,8 +9,8 @@ namespace prdog {
     template<typename T>
     class AgentImpl : public Agent {
         public:
-            void initialize(const ParamMap& params) {
-                mUserAgent->initialize(params);
+            void initialize(const AgentAddr& selfAddr, const ParamMap& params) {
+                mUserAgent->initialize(selfAddr, params);
             }
             
             void update(SimMediator& simMediator) {

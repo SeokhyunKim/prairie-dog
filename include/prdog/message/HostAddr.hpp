@@ -7,11 +7,15 @@ namespace prdog {
 
     class HostAddr {
         public:
-            string getName() const { return _name; }
-            void setName(const string& name) { _name = name; }
+            HostAddr() {}
+            HostAddr(const string& host) : mName(host) {}
+
+            string getName() const { return mName; }
+            void setName(const string& name) { mName = name; }
+            string toString() const { return getName(); }
 
         private:
-            string _name;
+            string mName;
     };
 
 }; // end of prdog

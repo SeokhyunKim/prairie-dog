@@ -7,7 +7,7 @@ PeriodicUpdater::PeriodicUpdater(real period)
 : mPeriod(period), mNextTime(0) {
 }
 
-void PeriodicUpdater::initialize(const ParamMap& params) {
+void PeriodicUpdater::initialize(const AgentAddr& addr, const ParamMap& params) {
 }
 
 void PeriodicUpdater::update(SimMediator& simMediator) {

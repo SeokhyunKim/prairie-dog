@@ -7,10 +7,12 @@ namespace prdog {
 
     class AgentAddr {
         public:
-            AgentAddr(int id) { mId = id; }
+            AgentAddr() : mHostAddr("localhost"), mId(-1) {}
+            AgentAddr(int id) : mHostAddr("localhost") { mId = id; }
 
             int getId() const { return mId; }
             string getAlias() const { return mAlias; }
+            string toString() const;
 
         private:
             HostAddr mHostAddr;

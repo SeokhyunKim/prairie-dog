@@ -6,14 +6,15 @@ using namespace prdog;
 class TestAgent {
     public:
         TestAgent(){}
-        void initialize(const prdog::ParamMap& parmas) {
-            cout << "init..." << endl;
+        void initialize(const AgentAddr& selfAddr, const prdog::ParamMap& parmas) {
+            mMyAddr = selfAddr;
+            cout << "init at " << mMyAddr.toString() << endl;
         }
 
         void update(SimMediator& simMediator) {
             //cout << "update..." << simMediator.getCurTime() << endl;
             Message::sptr msg = Message::sptr(
-                    new StringMessage(1, simMediator.getCurTime(), AgentAddr(1), AgentAddr(2), "test"));
+                    new StringMessage(1, simMediator.getCurTime(), mMyAddr, AgentAddr(2), "test"));
             simMediator.sendMessage(msg);
         }
             
@@ -24,6 +25,9 @@ class TestAgent {
         void onMessage(Message::sptr msg) {
             StringMessage::sptr ssptr = dynamic_pointer_cast<StringMessage>(msg);
         }
+
+    private:
+        AgentAddr mMyAddr;
 };
 
 

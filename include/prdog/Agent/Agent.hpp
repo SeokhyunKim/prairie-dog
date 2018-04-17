@@ -14,7 +14,7 @@ namespace prdog {
         public:
             typedef shared_ptr<Agent> sptr;
 
-            virtual void initialize(const ParamMap& params) = 0;
+            virtual void initialize(const AgentAddr& selfAddr, const ParamMap& params) = 0;
 
             virtual void update(SimMediator&) = 0;
 
