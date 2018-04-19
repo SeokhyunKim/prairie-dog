@@ -17,7 +17,7 @@ namespace prdog {
                 mUserAgent->update(simMediator);
             }
 
-            Event::sptr getNextEvent() {
+            list<Event::sptr> getNextEvents() {
                 return mUserAgent->getNextEvent();
             }
 

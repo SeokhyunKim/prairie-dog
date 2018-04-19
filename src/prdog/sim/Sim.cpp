@@ -93,10 +93,12 @@ void Sim::run(real deltaT) {
         // Update agents
         for (auto& a : mAgents) {
             a->update(mSimMediator);
-            Event::sptr evt = a->getNextEvent();
-            if (evt.get() != nullptr) {
-                mEvents.push_back(evt);
-                push_heap(mEvents.begin(), mEvents.end(), EventCompare());
+            list<Event::sptr> evts = a->getNextEvents();
+            for (auto& evt : evts) {
+                if (evt.get() != nullptr) {
+                    mEvents.push_back(evt);
+                    push_heap(mEvents.begin(), mEvents.end(), EventCompare());
+                }
             }
         }
     }

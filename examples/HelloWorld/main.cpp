@@ -18,8 +18,10 @@ class TestAgent {
             simMediator.sendMessage(msg);
         }
             
-        Event::sptr getNextEvent() {
-            return Event::sptr(nullptr);
+        list<Event::sptr> getNextEvent() {
+            list<Event::sptr> events;
+            events.push_back(Event::sptr(nullptr));
+            return events;
         }
 
         void onMessage(Message::sptr msg) {

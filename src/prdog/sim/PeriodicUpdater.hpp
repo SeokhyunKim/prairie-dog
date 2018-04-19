@@ -13,7 +13,7 @@ namespace prdog {
 
             void update(SimMediator&);
             
-            Event::sptr getNextEvent();
+            list<Event::sptr> getNextEvents();
 
             void onMessage(Message::sptr);
 

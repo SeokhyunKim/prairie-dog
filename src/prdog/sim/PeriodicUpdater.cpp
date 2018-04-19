@@ -14,8 +14,10 @@ void PeriodicUpdater::update(SimMediator& simMediator) {
     mNextTime = simMediator.getCurTime() + mPeriod;
 }
             
-Event::sptr PeriodicUpdater::getNextEvent() {
-    return Event::sptr(new UpdateSimEvent(mNextTime));
+list<Event::sptr> PeriodicUpdater::getNextEvents() {
+    list<Event::sptr> events;
+    events.push_back(Event::sptr(new UpdateSimEvent(mNextTime)));
+    return events;
 }
 
 void PeriodicUpdater::onMessage(Message::sptr) {

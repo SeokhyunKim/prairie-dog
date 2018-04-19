@@ -18,7 +18,7 @@ namespace prdog {
 
             virtual void update(SimMediator&) = 0;
 
-            virtual Event::sptr getNextEvent() = 0;
+            virtual list<Event::sptr> getNextEvents() = 0;
 
             virtual void onMessage(Message::sptr) = 0;
     };
